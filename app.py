@@ -6,10 +6,10 @@ from email.mime.text import MIMEText
 # Function to send email
 def send_email(name, email, message):
     # Set up your SMTP server credentials
-    smtp_server = 'smtp.your-email-provider.com'  # Change to your SMTP server
-    smtp_port = 587  # Usually 587 for TLS
-    smtp_user = 'your_email@example.com'  # Change to your email
-    smtp_password = 'your_password'  # Change to your email password
+    smtp_server = 'smtp.gmail.com'  # Gmail SMTP server
+    smtp_port = 587  # Port for TLS
+    smtp_user = 'meermiro299@gmail.com'  # Your email address
+    smtp_password = 'Meer2025meer'  # Your email password (or app-specific password)
 
     msg = MIMEText(message)
     msg['Subject'] = 'Application Status'
