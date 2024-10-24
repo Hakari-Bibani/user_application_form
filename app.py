@@ -48,5 +48,3 @@ def send_email(to, subject, body):
     server.sendmail(EMAIL_USER, to, text)
     server.quit()
 
-# Comment out or remove this line since Streamlit will handle running the app
-# app.run(debug=True)
