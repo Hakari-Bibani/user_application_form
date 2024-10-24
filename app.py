@@ -9,7 +9,7 @@ def send_email(name, email, message):
     smtp_server = 'smtp.gmail.com'  # Gmail SMTP server
     smtp_port = 587  # Port for TLS
     smtp_user = 'meermiro299@gmail.com'  # Your email address
-    smtp_password = 'Meer2025meer'  # Your email password (or app-specific password)
+    smtp_password = 'your_app_password_here'  # Your app password (if 2FA enabled)
 
     msg = MIMEText(message)
     msg['Subject'] = 'Application Status'
