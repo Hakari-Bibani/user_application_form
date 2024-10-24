@@ -64,4 +64,4 @@ def send_email(user_email, user_name, status):
         smtp.send_message(msg)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    
