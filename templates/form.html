@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Information Form</title>
+</head>
+<body>
+    <h1>Personal Information Form</h1>
+    <form action="/submit" method="post">
+        <label for="name">Name:</label>
+        <input type="text" name="name" required><br><br>
+
+        <label for="dob">Date of Birth:</label>
+        <input type="date" name="dob" required><br><br>
+
+        <label for="mobile">Mobile number:</label>
+        <input type="text" name="mobile" required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" name="email" required><br><br>
+
+        <label>Level of English language:</label>
+        <select name="english_level" required>
+            <option value="1">Beginner</option>
+            <option value="2">Intermediate</option>
+            <option value="3">Advanced</option>
+        </select><br><br>
+
+        <label>Level of Python:</label>
+        <select name="python_level" required>
+            <option value="1">Beginner</option>
+            <option value="2">Intermediate</option>
+            <option value="3">Advanced</option>
+        </select><br><br>
+
+        <label>Experience:</label>
+        <select name="experience" required>
+            <option value="less than a year">Less than a year</option>
+            <option value="2-4 years">2-4 years</option>
+            <option value="5+">5+ years</option>
+        </select><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
