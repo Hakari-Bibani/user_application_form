@@ -1,38 +1,17 @@
-from flask import Flask, render_template, request
 import os
-from dotenv import load_dotenv
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+import streamlit as st
+from dotenv import load_dotenv
 
-app = Flask(__name__)
+# Load environment variables
 load_dotenv()
 
 EMAIL_USER = os.getenv('EMAIL_USER')
 EMAIL_PASSWORD = os.getenv('EMAIL_PASSWORD')
 EMAIL_HOST = os.getenv('EMAIL_HOST')
 EMAIL_PORT = os.getenv('EMAIL_PORT')
-
-@app.route('/', methods=['GET', 'POST'])
-def index():
-    if request.method == 'POST':
-        name = request.form['name']
-        email = request.form['email']
-        english_level = request.form['english_level']
-        python_level = request.form['python_level']
-        experience = request.form['experience']
-
-        # Check if the user meets the acceptance criteria
-        if english_level == '3' and python_level == '3' and experience == '5+ years':
-            subject = "Application Accepted!"
-            body = f"Dear {name},\n\nWe are delighted to inform you that your application for our course has been accepted!"
-        else:
-            subject = "Application Declined"
-            body = f"Dear {name},\n\nThank you for your interest in our course, but unfortunately, we cannot offer you a place at this time."
-
-        send_email(email, subject, body)
-
-    return render_template('form.html')
 
 def send_email(to, subject, body):
     msg = MIMEMultipart()
@@ -48,3 +27,27 @@ def send_email(to, subject, body):
     server.sendmail(EMAIL_USER, to, text)
     server.quit()
 
+# Streamlit UI
+st.title('Personal Information Form')
+
+# Form inputs
+name = st.text_input("Name")
+dob = st.date_input("Date of Birth")
+mobile = st.text_input("Mobile Number")
+email = st.text_input("Email")
+english_level = st.selectbox("Level of English Language", ["1 - Beginner", "2 - Intermediate", "3 - Advanced"])
+python_level = st.selectbox("Level of Python", ["1 - Beginner", "2 - Intermediate", "3 - Advanced"])
+experience = st.selectbox("Experience", ["Less than a year", "2-4 years", "5+ years"])
+
+# Submit button
+if st.button('Submit'):
+    if english_level == '3 - Advanced' and python_level == '3 - Advanced' and experience == '5+ years':
+        subject = "Application Accepted!"
+        body = f"Dear {name},\n\nWe are delighted to inform you that your application for our course has been accepted!"
+        send_email(email, subject, body)
+        st.success("Application accepted! Email sent.")
+    else:
+        subject = "Application Declined"
+        body = f"Dear {name},\n\nThank you for your interest in our course, but unfortunately, we cannot offer you a place at this time."
+        send_email(email, subject, body)
+        st.warning("Application declined. Email sent.")
